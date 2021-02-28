@@ -4,3 +4,4 @@ name: Glow
 prefix: Glow
 version: 1.0.0
 author: Warriorrr
+depend: [GlowAPI, PacketListenerApi]
