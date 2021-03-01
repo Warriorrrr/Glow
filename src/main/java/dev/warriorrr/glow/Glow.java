@@ -1,21 +1,22 @@
 package dev.warriorrr.glow;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.inventivetalent.glow.GlowAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 public class Glow extends JavaPlugin implements Listener {
 
-    public static Glow plugin;
-
     @Override
     public void onEnable() {
-        plugin = this;
-        
-        Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
-    }
-
-    public static Glow getPlugin() {
-        return plugin;
+        Bukkit.getPluginManager().registerEvents(new Listener() {
+            @EventHandler
+            public void onPlayerJoin(PlayerJoinEvent event) {
+                if (event.getPlayer().hasPermission("group.premium"))
+                    GlowAPI.setGlowing(event.getPlayer(), GlowAPI.Color.PURPLE, Bukkit.getOnlinePlayers());
+            }
+        }, this);
     }
 }
