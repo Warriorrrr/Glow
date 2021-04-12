@@ -2,6 +2,6 @@ main: dev.warriorrr.glow.Glow
 api-version: 1.16
 name: Glow
 prefix: Glow
-version: 1.0.0
+version: 1.0.1
 author: Warriorrr
 depend: [GlowAPI, PacketListenerApi]
