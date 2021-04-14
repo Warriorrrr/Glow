@@ -21,7 +21,8 @@ public class PlayerListener implements Listener {
                 if (player.hasPermission("group.premium")) {
                     GlowAPI.setGlowing(player, GlowAPI.Color.PURPLE, Bukkit.getOnlinePlayers());
                     glowingPlayers.add(player);
-                }
+                } else
+                    GlowAPI.setGlowing(player, null, Bukkit.getOnlinePlayers());
             }
         }, 20L);
     }
@@ -33,11 +34,12 @@ public class PlayerListener implements Listener {
     }
 
     public void updateGlowingPlayers(Player player) {
-        for (Player glowingPlayer : glowingPlayers) {
-            if (GlowAPI.isGlowing(glowingPlayer, player))
-                GlowAPI.setGlowing(glowingPlayer, null, player);
+        for (Player op : Bukkit.getOnlinePlayers()) {
+            if (GlowAPI.isGlowing(op, player))
+                GlowAPI.setGlowing(op, null, player);
             
-            GlowAPI.setGlowing(glowingPlayer, GlowAPI.Color.PURPLE, player);
+            if (glowingPlayers.contains(op))
+                GlowAPI.setGlowing(op, GlowAPI.Color.PURPLE, player);
         }
     }
 }
